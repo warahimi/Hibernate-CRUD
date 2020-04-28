@@ -31,47 +31,52 @@ public class UpdateObject {
 			theSession.beginTransaction();
 			Employee emp = theSession.get(Employee.class, empID);
 			Employee readEmp = theSession.get(Employee.class, empID);
-			System.out.println(readEmp); // print the object
-			System.out.println("================================");
-			System.out.println("ID: "+readEmp.getId());
-			System.out.println("First Name: "+readEmp.getFirstName());
-			System.out.println("Last Name: "+readEmp.getLastName());
-			System.out.println("Course: "+readEmp.getCourse());
-			System.out.println("Email: "+readEmp.getEmail());
-			System.out.println("\n\nWhat you want to update?\n1. First Name\n2. Last Name\n3. Course\n4. Email");
-			int choice = input.nextInt();
-			if(choice ==1)
-			{
-				System.out.print("Enter the new name: ");
-				x = bReader.readLine();
-				emp.setFirstName(x);
-			}
-			else if(choice ==2)
-			{
-				System.out.print("Enter the new last name: ");
-				x = bReader.readLine();
-				emp.setLastName(x);
-			}
-			if(choice ==3)
-			{
-				System.out.print("Enter the new course: ");
-				x = bReader.readLine();
-				emp.setCourse(x);
-			}
-			if(choice ==4)
-			{
-				System.out.print("Enter the new email: ");
-				x = bReader.readLine();
-				emp.setEmail(x);
+			if (readEmp == null) {
+				System.out.println("THe employee doest exist.\nPlease try again!");
+				
 			}
 			else {
-				System.out.println("Invalid Entry");
+				System.out.println(readEmp); // print the object
+				System.out.println("================================");
+				System.out.println("ID: "+readEmp.getId());
+				System.out.println("First Name: "+readEmp.getFirstName());
+				System.out.println("Last Name: "+readEmp.getLastName());
+				System.out.println("Course: "+readEmp.getCourse());
+				System.out.println("Email: "+readEmp.getEmail());
+				System.out.println("\n\nWhat you want to update?\n1. First Name\n2. Last Name\n3. Course\n4. Email");
+				int choice = input.nextInt();
+				if(choice ==1)
+				{
+					System.out.print("Enter the new name: ");
+					x = bReader.readLine();
+					emp.setFirstName(x);
+				}
+				else if(choice ==2)
+				{
+					System.out.print("Enter the new last name: ");
+					x = bReader.readLine();
+					emp.setLastName(x);
+				}
+				if(choice ==3)
+				{
+					System.out.print("Enter the new course: ");
+					x = bReader.readLine();
+					emp.setCourse(x);
+				}
+				if(choice ==4)
+				{
+					System.out.print("Enter the new email: ");
+					x = bReader.readLine();
+					emp.setEmail(x);
+				}
+				else {
+					System.out.println("Invalid Entry");
+				}
+				
+				theSession.getTransaction().commit();
+			
+			
 			}
-			
-			theSession.getTransaction().commit();
-			
-			
-			
 			
 			
 		} catch (Exception e) {
